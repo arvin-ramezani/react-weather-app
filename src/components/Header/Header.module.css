@@ -1,0 +1,17 @@
+.header {
+  padding: 1.4rem;
+}
+
+.logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.logo img {
+  width: 48px;
+}
+
+.logo span {
+  font-weight: bold;
+}

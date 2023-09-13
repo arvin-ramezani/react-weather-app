@@ -1,0 +1,39 @@
+.form {
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.search {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.search input {
+  width: 80%;
+  border-radius: 3rem;
+  font-size: 1rem;
+  padding: 0.6rem;
+  border: none;
+  outline: none;
+  color: var(--text-color-dark);
+}
+
+.search input::placeholder {
+  font-size: 0.9rem;
+  color: var(--text-color-dark);
+}
+
+.search input:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+.search button {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 0;
+  background-color: var(--color-primary);
+  color: var(--text-color-gray);
+}

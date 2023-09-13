@@ -1,0 +1,13 @@
+:root {
+  --color-primary: #f8d62e;
+  --text-color-light: #edeff3;
+  --text-color-dark: #212121;
+  --text-color-gray: #757575;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

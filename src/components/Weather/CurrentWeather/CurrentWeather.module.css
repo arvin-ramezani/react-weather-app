@@ -1,0 +1,91 @@
+.current-weather {
+  position: relative;
+  margin-top: 2rem;
+  padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  color: var(--text-color-light);
+}
+
+.blur-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+.weather-details {
+  width: 60%;
+}
+
+.temperature-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.temperature {
+  font-size: 3.4rem;
+  position: relative;
+  width: fit-content;
+  color: var(--color-primary);
+}
+
+.temperature svg {
+  font-size: 1.6rem;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  color: var(--text-color-light);
+}
+
+.details-block {
+  text-align: center;
+  display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.details-block > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.details-block > div svg {
+  color: #3ebeff;
+}
+
+.details-block > div > img {
+  width: 32px;
+}
+
+.details-block > div > span {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.details-block div:last-child span {
+  display: block;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-top: auto;
+}
+
+.image-wrapper {
+  width: 40%;
+}
+
+.image-wrapper img {
+  border-radius: 1rem;
+}
+
+.image-wrapper p {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+}
