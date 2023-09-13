@@ -7,7 +7,6 @@ const SearchForm: FC = () => {
   return (
     <form className={classes.form}>
       <div className={classes.search}>
-        {/* <label htmlFor='search'>Search Location</label> */}
         <input
           id='search'
           type='search'

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import SearchForm from './SearchForm/SearchForm';
-import CurrentWeather from './CurrentWeather/CurrentWeather';
+import SearchForm from '../SearchForm/SearchForm';
+import CurrentWeather from '../CurrentWeather/CurrentWeather';
 import classes from './Weather.module.css';
 
 const Weather: FC = () => {
