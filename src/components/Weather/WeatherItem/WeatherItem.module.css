@@ -1,0 +1,50 @@
+.weather-item {
+  min-width: 130px;
+  border-radius: 0.8rem;
+  background: #024879;
+  color: var(--text-color-light);
+  padding: 1rem 0.8rem;
+}
+
+.weather-item h4 {
+  text-align: center;
+  font-size: 1.2;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+}
+
+.temperature-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.temperature-block p {
+  font-size: 1.8rem;
+}
+
+.temperature-block svg {
+  font-size: 1.2rem;
+  top: -4px;
+}
+
+.weather-item-image-wrapper {
+  width: 45%;
+}
+
+.details-block {
+  display: flex;
+  margin-top: 1rem;
+  gap: 0.4rem;
+  justify-content: space-between;
+}
+
+.details-block img,
+.details-block svg {
+  width: 20px;
+  height: 20px;
+}
+
+.details-block span {
+  font-size: 1rem;
+}

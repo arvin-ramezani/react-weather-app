@@ -1,0 +1,7 @@
+.weather-list {
+  margin-top: 2rem;
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  gap: 0.6rem;
+}

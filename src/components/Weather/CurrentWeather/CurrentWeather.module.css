@@ -1,7 +1,7 @@
 .current-weather {
   position: relative;
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   display: flex;
   gap: 0.5rem;
   justify-content: space-between;
@@ -27,54 +27,11 @@
   justify-content: space-between;
 }
 
-.temperature {
-  font-size: 3.4rem;
-  position: relative;
-  width: fit-content;
-  color: var(--color-primary);
-}
-
-.temperature svg {
-  font-size: 1.6rem;
-  position: absolute;
-  top: 0;
-  right: -20px;
-  color: var(--text-color-light);
-}
-
 .details-block {
   text-align: center;
   display: flex;
   margin-top: 2rem;
   gap: 1rem;
-}
-
-.details-block > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.details-block > div svg {
-  color: #3ebeff;
-}
-
-.details-block > div > img {
-  width: 32px;
-}
-
-.details-block > div > span {
-  display: block;
-  font-size: 1.4rem;
-  font-weight: normal;
-}
-
-.details-block div:last-child span {
-  display: block;
-  font-size: 1rem;
-  font-weight: normal;
-  margin-top: auto;
 }
 
 .image-wrapper {

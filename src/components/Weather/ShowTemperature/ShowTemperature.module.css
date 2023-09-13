@@ -1,0 +1,17 @@
+.temperature {
+  position: relative;
+}
+
+.temperature-text {
+  font-size: 3.4rem;
+  width: fit-content;
+  color: var(--color-primary);
+}
+
+.temperature svg {
+  font-size: 1.6rem;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  color: var(--text-color-light);
+}
