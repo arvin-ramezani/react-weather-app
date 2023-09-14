@@ -5,9 +5,9 @@ import CurrentWeather from '../CurrentWeather/CurrentWeather';
 import WeatherList from '../WeatherList/WeatherList';
 import { IForecast } from '../../../utils/types/weather.types';
 import { transformWeatherResponse } from '../../../utils/helpers/transformResponse';
-import { WEATHER_API_URL } from '../../../utils/constants';
 import classes from './Weather.module.css';
 import LoadingSpinner from '../../ui/LoadingSpinner/LoadingSpinner';
+import { createUrl } from '../../../utils/helpers/createUrl';
 
 const initialForecast: IForecast = {
   avgHumidity: 0,
@@ -30,6 +30,10 @@ const Weather: FC = () => {
   const [loading, setLoading] = useState(true);
 
   const transformAndSetState = (weatherRes: any) => {
+    if (weatherRes.error) {
+      throw new Error(weatherRes.error.message);
+    }
+
     const { currentForecast, nextForecastsList } = transformWeatherResponse(
       weatherRes.forecast.forecastday
     );
@@ -38,18 +42,20 @@ const Weather: FC = () => {
     setNextForecastsList(nextForecastsList);
   };
 
-  console.log(currentForecast, nextForecastsList, 'asdf');
+  console.log(nextForecastsList, 'asdf');
+
+  const fetchWeather = (city?: string) => {
+    const url = createUrl(city || 'London');
+    console.log(city, 'city');
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => transformAndSetState(data))
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  };
 
   useEffect(() => {
-    const getWeather = () => {
-      fetch(WEATHER_API_URL)
-        .then((res) => res.json())
-        .then((data) => transformAndSetState(data))
-        .catch((err) => console.error(err))
-        .finally(() => setLoading(false));
-    };
-
-    getWeather();
+    fetchWeather();
   }, []);
 
   return (
@@ -60,7 +66,7 @@ const Weather: FC = () => {
 
       {loading && <LoadingSpinner />}
 
-      <SearchForm />
+      <SearchForm onSearch={fetchWeather} />
 
       <CurrentWeather {...currentForecast} />
 
