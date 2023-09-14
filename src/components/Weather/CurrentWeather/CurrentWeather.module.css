@@ -1,11 +1,12 @@
 .current-weather {
   position: relative;
-  margin-top: 2rem;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0 1rem 1rem;
   display: flex;
   gap: 0.5rem;
   justify-content: space-between;
   color: var(--text-color-light);
+  max-width: 500px;
+  margin: 2rem auto 0;
 }
 
 .blur-background {
@@ -15,22 +16,26 @@
   height: 100%;
   width: 100%;
   backdrop-filter: blur(8px);
+  background: linear-gradient(358deg, #024879, transparent);
+  border-radius: 1.5rem;
   z-index: -1;
 }
 
 .weather-details {
   width: 60%;
+  display: flex;
+  flex-direction: column;
 }
 
 .temperature-block {
-  display: flex;
-  justify-content: space-between;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
 }
 
 .details-block {
   text-align: center;
   display: flex;
-  margin-top: 2rem;
+  margin-top: auto;
   gap: 1rem;
 }
 

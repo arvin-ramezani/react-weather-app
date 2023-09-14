@@ -1,5 +1,6 @@
 .form {
-  margin-top: 3rem;
+  max-width: 400px;
+  margin: 3rem auto 0;
 }
 
 .search {

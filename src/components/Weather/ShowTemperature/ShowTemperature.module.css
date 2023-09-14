@@ -1,5 +1,6 @@
 .temperature {
   position: relative;
+  width: fit-content;
 }
 
 .temperature-text {
