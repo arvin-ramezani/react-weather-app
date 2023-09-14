@@ -42,6 +42,12 @@
   margin-top: -20px;
 }
 
+.image-wrapper .weather-icon-placeholder {
+  width: 30%;
+  margin: 0 auto;
+  display: block;
+}
+
 .image-wrapper p {
   margin-top: 1.2rem;
   font-size: 0.9rem;

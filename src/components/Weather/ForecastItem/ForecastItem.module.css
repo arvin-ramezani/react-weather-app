@@ -1,4 +1,4 @@
-.weather-item {
+.forecast-item {
   min-width: 130px;
   border-radius: 0.8rem;
   background: #024879;
@@ -6,7 +6,7 @@
   padding: 1rem 0.8rem;
 }
 
-.weather-item h4 {
+.forecast-item h4 {
   text-align: center;
   font-size: 1.2;
   font-weight: bold;
@@ -19,16 +19,20 @@
   justify-content: space-between;
 }
 
+.temperature-block > div > div:first-child {
+  margin-bottom: 0.4rem;
+}
+
 .temperature-block p {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 }
 
 .temperature-block svg {
-  font-size: 1.2rem;
-  top: -4px;
+  font-size: 2rem;
+  top: -7px;
 }
 
-.weather-item-image-wrapper {
+.forecast-item-image-wrapper {
   width: 45%;
 }
 
@@ -46,5 +50,5 @@
 }
 
 .details-block span {
-  font-size: 1rem;
+  font-size: 0.85rem;
 }

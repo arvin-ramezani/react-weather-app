@@ -5,6 +5,7 @@
 .search {
   position: relative;
   display: flex;
+  justify-content: center;
   gap: 0.6rem;
 }
 
