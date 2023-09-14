@@ -1,0 +1,30 @@
+.notification {
+  width: 200px;
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  transform: translateX(-50%);
+  background: #024879;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--text-color-light);
+  line-height: 1.4;
+}
+
+.notification-actions {
+  direction: rtl;
+}
+
+.notification-actions button {
+  width: 48px;
+  height: 24px;
+  font-weight: bold;
+  background-color: var(--color-primary);
+  color: var(--text-color-gray);
+  border: none;
+  border-radius: 0.3rem;
+}
+
+.notification-actions button:focus {
+  outline: 2px solid var(--text-color-dark);
+}

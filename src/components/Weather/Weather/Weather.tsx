@@ -3,11 +3,12 @@ import { FC, useEffect, useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
 import ForecastList from '../ForecastList/ForecastList';
-import { ICurrentWeather, IForecast } from '../../../utils/types/weather.types';
-import { transformWeatherResponse } from '../../../utils/helpers/transformResponse';
+import { ICurrentWeather, IForecast } from '@/utils/types/weather.types';
+import { transformWeatherResponse } from '@/utils/helpers/transformResponse';
 import LoadingSpinner from '../../ui/LoadingSpinner/LoadingSpinner';
-import { createUrl } from '../../../utils/helpers/createUrl';
+import { createUrl } from '@/utils/helpers/createUrl';
 import classes from './Weather.module.css';
+import Notification from '@/components/ui/Notification/Notification';
 
 const initialForecast: ICurrentWeather = {
   humidity: 0,
@@ -30,14 +31,14 @@ const Weather: FC = () => {
     useState<ICurrentWeather>(initialForecast);
 
   const [nextForecastsList, setNextForecastsList] = useState<IForecast[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [errorText, setErrorText] = useState('');
 
   const transformAndSetState = (weatherRes: any) => {
     if (weatherRes.error) {
-      throw new Error(weatherRes.error.message);
+      setErrorText(weatherRes.error.message);
+      return;
     }
-
-    console.log(weatherRes, 'res');
 
     const { currentForecast, nextForecastsList } =
       transformWeatherResponse(weatherRes);
@@ -52,7 +53,8 @@ const Weather: FC = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => transformAndSetState(data))
-      .catch((err) => console.error(err))
+      .catch((err) => console.log(err, 'catch'))
+      // .catch((err) => setErrorText(err?.message))
       .finally(() => setLoading(false));
   };
 
@@ -67,6 +69,13 @@ const Weather: FC = () => {
       </h1>
 
       {loading && <LoadingSpinner />}
+
+      {!!errorText && (
+        <Notification
+          content={errorText}
+          onClose={setErrorText.bind(null, '')}
+        />
+      )}
 
       <SearchForm onSearch={fetchWeather} />
 
