@@ -51,6 +51,7 @@
 
 .image-wrapper {
   width: 40%;
+  font-size: 0.9rem;
 }
 
 .image-wrapper img {
@@ -68,6 +69,6 @@
   color: #3cb7ff;
 }
 
-.image-wrapper p {
-  font-size: 0.9rem;
+.image-wrapper p:last-child {
+  line-height: 1.2;
 }

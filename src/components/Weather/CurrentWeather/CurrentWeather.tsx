@@ -4,8 +4,8 @@ import WeatherIconPlaceHolder from '../../../assets/icons/sunny-icon.png';
 import ShowTemperature from '../ShowTemperature/ShowTemperature';
 import ShowHumidity from '../ShowHumidity/ShowHumidity';
 import ShowWindSpeed from '../ShowWindSpeed/ShowWindSpeed';
-import { ICurrentWeather } from '../../../utils/types/weather.types';
-import { formatLastUpdateDate } from '../../../utils/helpers/formatDate';
+import { ICurrentWeather } from '@/utils/types/weather.types';
+import { formatLastUpdateDate } from '@/utils/helpers/formatDate';
 import classes from './CurrentWeather.module.css';
 
 const CurrentWeather: FC<ICurrentWeather> = ({

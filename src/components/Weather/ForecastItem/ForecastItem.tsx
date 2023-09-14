@@ -3,7 +3,7 @@ import { FC } from 'react';
 import ShowTemperature from '../ShowTemperature/ShowTemperature';
 import ShowHumidity from '../ShowHumidity/ShowHumidity';
 import ShowWindSpeed from '../ShowWindSpeed/ShowWindSpeed';
-import { IForecast } from '../../../utils/types/weather.types';
+import { IForecast } from '@/utils/types/weather.types';
 import classes from './ForecastItem.module.css';
 
 const ForecastItem: FC<IForecast> = ({

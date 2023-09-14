@@ -2,7 +2,7 @@ import { FC, KeyboardEventHandler, useRef, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 import classes from './SearchForm.module.css';
-import { validateSearch } from '../../../utils/helpers/validateSearch';
+import { validateSearch } from '@/utils/helpers/validateSearch';
 
 export interface SearchFormProps {
   onSearch: (city: string) => void;
