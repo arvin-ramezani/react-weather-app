@@ -1,6 +1,6 @@
 .current-weather {
   position: relative;
-  padding: 1rem 0 1rem 1rem;
+  padding: 3rem 0 1rem 1rem;
   display: flex;
   gap: 0.5rem;
   justify-content: space-between;
@@ -16,9 +16,19 @@
   height: 100%;
   width: 100%;
   backdrop-filter: blur(8px);
-  background: linear-gradient(358deg, #024879, transparent);
+  background: linear-gradient(358deg, #024879, transparent, #024879);
   border-radius: 1.5rem;
   z-index: -1;
+}
+
+.current-weather h2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  text-align: center;
+  text-wrap: nowrap;
+  top: 0.8rem;
 }
 
 .weather-details {
@@ -53,7 +63,11 @@
   display: block;
 }
 
+.last-update {
+  margin-bottom: 0.4rem;
+  color: #3cb7ff;
+}
+
 .image-wrapper p {
-  margin-top: 1.2rem;
   font-size: 0.9rem;
 }

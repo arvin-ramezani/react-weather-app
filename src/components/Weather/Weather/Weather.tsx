@@ -14,6 +14,10 @@ const initialForecast: ICurrentWeather = {
   windSpeed: 0,
   celTemperature: 0,
   furTemperature: 0,
+  location: {
+    name: '',
+    country: '',
+  },
   condition: {
     icon: '',
     text: '',
@@ -33,7 +37,7 @@ const Weather: FC = () => {
       throw new Error(weatherRes.error.message);
     }
 
-    console.log(weatherRes);
+    console.log(weatherRes, 'res');
 
     const { currentForecast, nextForecastsList } =
       transformWeatherResponse(weatherRes);

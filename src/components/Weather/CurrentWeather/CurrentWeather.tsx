@@ -13,15 +13,19 @@ const CurrentWeather: FC<ICurrentWeather> = ({
   windSpeed,
   celTemperature,
   lastUpdate,
+  location: { name: locationName, country },
   condition: { icon },
 
   // furAvgTemperature,
 }) => {
   const formattedLastUpdate: string = formatLastUpdateDate(lastUpdate);
+  const location = `${locationName}, ${country}`;
 
   return (
     <div className={classes['current-weather']}>
       <div className={classes['blur-background']} />
+
+      <h2>{location}</h2>
 
       <div className={classes['weather-details']}>
         <div className={classes['temperature-block']}>
@@ -49,12 +53,7 @@ const CurrentWeather: FC<ICurrentWeather> = ({
           />
         )}
 
-        {/* <img
-          className={classes['weather-icon-placeholder']}
-          src={WeatherIconPlaceHolder}
-          alt='Weather Icon'
-        /> */}
-
+        <p className={classes['last-update']}>Last Update</p>
         <p>{formattedLastUpdate}</p>
       </div>
     </div>

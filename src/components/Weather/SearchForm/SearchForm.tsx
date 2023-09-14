@@ -22,6 +22,8 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
       return;
     }
 
+    setInvalid(false);
+
     onSearch(searchText);
   };
 
@@ -37,6 +39,7 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
       <div className={classes.search}>
         <input
           ref={inputRef}
+          key={invalid.toString()}
           id='search'
           type='text'
           placeholder='Search Location...'

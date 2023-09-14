@@ -8,15 +8,12 @@ type transformWeatherResponseType = (response: any) => {
 export const transformWeatherResponse: transformWeatherResponseType = (
   response: any
 ) => {
-  // if (!Array.isArray(response)) {
-  //   throw new Error(
-  //     `This function expect an array as argument but got ${typeof response}`
-  //   );
-  // }
-
   const currentWeatherResponse = response.current;
   const forecastListResponse = response.forecast.forecastday;
-  console.log(currentWeatherResponse, forecastListResponse, 'response');
+  const location = {
+    name: response.location.name,
+    country: response.location.country,
+  };
 
   const transformedWeatherResponse = forecastListResponse.map(
     (item: any, index: number) => ({
@@ -41,6 +38,7 @@ export const transformWeatherResponse: transformWeatherResponseType = (
     windSpeed: currentWeatherResponse.vis_km,
     humidity: currentWeatherResponse.humidity,
     lastUpdate: currentWeatherResponse.last_updated,
+    location: location,
     condition: {
       text: currentWeatherResponse.condition.text,
       icon: currentWeatherResponse.condition.icon,
