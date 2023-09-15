@@ -18,8 +18,8 @@ export const transformWeatherResponse: transformWeatherResponseType = (
       date: item.date,
       maxCelTemperature: item.day.maxtemp_c,
       minCelTemperature: item.day.mintemp_c,
-      maxFurTemperature: item.day.maxtemp_f,
-      minFurTemperature: item.day.mintemp_f,
+      maxFahTemperature: item.day.maxtemp_f,
+      minFahTemperature: item.day.mintemp_f,
       avgHumidity: item.day.avghumidity,
       avgWindSpeed: item.day.avgvis_km,
       condition: {
@@ -31,7 +31,7 @@ export const transformWeatherResponse: transformWeatherResponseType = (
 
   const currentWeather: ICurrentWeather = {
     celTemperature: currentWeatherResponse.temp_c,
-    furTemperature: currentWeatherResponse.temp_f,
+    fahTemperature: currentWeatherResponse.temp_f,
     windSpeed: currentWeatherResponse.vis_km,
     humidity: currentWeatherResponse.humidity,
     lastUpdate: currentWeatherResponse.last_updated,

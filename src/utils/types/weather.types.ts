@@ -1,6 +1,6 @@
 export enum TemperatureUnit {
   CEL = 'celsius',
-  FUH = 'Fahrenheit',
+  FAH = 'fahrenheit',
 }
 
 export interface IWeatherData {
@@ -11,7 +11,7 @@ export interface IWeatherData {
 export interface ICurrentWeather {
   lastUpdate: string;
   celTemperature: number;
-  furTemperature: number;
+  fahTemperature: number;
   humidity: number;
   windSpeed: number;
   location: {
@@ -29,8 +29,8 @@ export interface IForecast {
   date: string;
   maxCelTemperature: number;
   minCelTemperature: number;
-  maxFuhTemperature: number;
-  minFuhTemperature: number;
+  maxFahTemperature: number;
+  minFahTemperature: number;
   avgHumidity: number;
   avgWindSpeed: number;
   condition: {

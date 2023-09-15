@@ -27,10 +27,18 @@ const Weather: FC = () => {
 
   const [forecastList, setForecastList] = useState<IForecast[]>([]);
   const [tempUnit, setTempUnit] = useState<TemperatureUnit>(
-    TemperatureUnit.FUH
+    TemperatureUnit.CEL
   );
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState('');
+
+  const toggleTempUnitHandler = () => {
+    setTempUnit((prevUnit) =>
+      prevUnit === TemperatureUnit.CEL
+        ? TemperatureUnit.FAH
+        : TemperatureUnit.CEL
+    );
+  };
 
   const transformAndSetState = (weatherRes: any) => {
     if (weatherRes.error) {
@@ -67,6 +75,22 @@ const Weather: FC = () => {
     savedCityName && fetchWeather(savedCityName);
   }, [getFromLocalStorage, fetchWeather]);
 
+  useEffect(() => {
+    saveToLocalStorage(LocalStorageDataName.TEMP_UNIT, tempUnit);
+  }, [tempUnit, saveToLocalStorage]);
+
+  // useEffect(() => {
+  //   function getLocation() {
+  //     if (navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition((loc) => {
+  //         console.log('loc', loc);
+  //       });
+  //     }
+  //   }
+
+  //   getLocation();
+  // }, []);
+
   return (
     <section className={classes.weather}>
       <h1>
@@ -98,8 +122,12 @@ const Weather: FC = () => {
           <CurrentWeather
             currentWeather={currentWeather}
             tempUnit={tempUnit}
+            onToggleTempUnit={toggleTempUnitHandler}
           />
-          <ForecastList weatherList={forecastList} />
+          <ForecastList
+            weatherList={forecastList}
+            tempUnit={tempUnit}
+          />
         </>
       ) : (
         <p className={classes['weather-placeholder']}>

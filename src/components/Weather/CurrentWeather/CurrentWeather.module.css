@@ -1,12 +1,16 @@
+.current-weather-container {
+  margin: 2rem auto 0;
+  max-width: 500px;
+}
+
 .current-weather {
   position: relative;
   padding: 3rem 0 1rem 1rem;
+  margin-top: 0.6rem;
   display: flex;
   gap: 0.5rem;
   justify-content: space-between;
   color: var(--text-color-light);
-  max-width: 500px;
-  margin: 2rem auto 0;
 }
 
 .blur-background {

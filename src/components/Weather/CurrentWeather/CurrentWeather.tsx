@@ -5,19 +5,20 @@ import ShowHumidity from '../ShowHumidity/ShowHumidity';
 import ShowWindSpeed from '../ShowWindSpeed/ShowWindSpeed';
 import { ICurrentWeather, TemperatureUnit } from '@/utils/types/weather.types';
 import { formatLastUpdateDate } from '@/utils/helpers/formatDate';
+import ToggleTempUnit from '../ToggleTempUnit/ToggleTempUnit';
 import classes from './CurrentWeather.module.css';
 
 export interface CurrentWeatherProps {
-  currentWeather: ICurrentWeather | null;
+  currentWeather: ICurrentWeather;
   tempUnit: TemperatureUnit;
+  onToggleTempUnit: () => void;
 }
 
 const CurrentWeather: FC<CurrentWeatherProps> = ({
   currentWeather,
   tempUnit,
+  onToggleTempUnit,
 }) => {
-  if (!currentWeather) return null;
-
   const {
     humidity,
     windSpeed,
@@ -25,45 +26,51 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
     lastUpdate,
     location: { name: locationName, country },
     condition: { icon },
-
-    furTemperature,
+    fahTemperature,
   } = currentWeather;
 
   const preferredTemperatureUnit =
-    tempUnit === TemperatureUnit.CEL ? celTemperature : furTemperature;
+    tempUnit === TemperatureUnit.CEL ? celTemperature : fahTemperature;
 
   const formattedLastUpdate: string = formatLastUpdateDate(lastUpdate);
   const location = `${locationName}, ${country}`;
 
   return (
-    <div className={classes['current-weather']}>
-      <div className={classes['blur-background']} />
+    <div className={classes['current-weather-container']}>
+      <ToggleTempUnit
+        currentUnit={tempUnit}
+        onToggle={onToggleTempUnit}
+      />
 
-      <h2>{location}</h2>
+      <div className={classes['current-weather']}>
+        <div className={classes['blur-background']} />
 
-      <div className={classes['weather-details']}>
-        <div className={classes['temperature-block']}>
-          <ShowTemperature
-            deg={preferredTemperatureUnit}
-            type={tempUnit}
+        <h2>{location}</h2>
+
+        <div className={classes['weather-details']}>
+          <div className={classes['temperature-block']}>
+            <ShowTemperature
+              deg={preferredTemperatureUnit}
+              type={tempUnit}
+            />
+          </div>
+
+          <div className={classes['details-block']}>
+            <ShowHumidity humidity={humidity} />
+
+            <ShowWindSpeed windSpeed={windSpeed} />
+          </div>
+        </div>
+
+        <div className={classes['image-wrapper']}>
+          <img
+            src={icon}
+            alt='Weather Icon'
           />
+
+          <p className={classes['last-update']}>Last Update</p>
+          <p>{formattedLastUpdate}</p>
         </div>
-
-        <div className={classes['details-block']}>
-          <ShowHumidity humidity={humidity} />
-
-          <ShowWindSpeed windSpeed={windSpeed} />
-        </div>
-      </div>
-
-      <div className={classes['image-wrapper']}>
-        <img
-          src={icon}
-          alt='Weather Icon'
-        />
-
-        <p className={classes['last-update']}>Last Update</p>
-        <p>{formattedLastUpdate}</p>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ const ShowTemperature: FC<ShowTemperatureProps> = ({
     );
   }
 
-  if (type === TemperatureUnit.FUH) {
+  if (type === TemperatureUnit.FAH) {
     return (
       <div className={classes.temperature}>
         <p className={classes['temperature-text']}>{deg}</p>

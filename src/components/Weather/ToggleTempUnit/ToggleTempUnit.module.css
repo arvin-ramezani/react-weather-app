@@ -1,0 +1,43 @@
+.toggle-temp-unit {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  border-radius: 1.5rem;
+  padding: 0.3rem;
+  background-color: var(--color-secondary);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-temp-unit[data-is-celsius='true'] {
+  justify-content: flex-start;
+}
+
+.active-temp-unit {
+  background-color: var(--color-primary);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.celsius,
+.fahrenheit {
+  position: absolute;
+}
+
+.celsius {
+  left: 0.2rem;
+}
+
+.fahrenheit {
+  right: 0.3rem;
+}
+
+.toggle-temp-unit svg {
+  color: var(--text-color-dark);
+}

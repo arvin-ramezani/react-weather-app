@@ -3,27 +3,32 @@ import { FC } from 'react';
 import ShowTemperature from '../ShowTemperature/ShowTemperature';
 import ShowHumidity from '../ShowHumidity/ShowHumidity';
 import ShowWindSpeed from '../ShowWindSpeed/ShowWindSpeed';
-import { IForecast } from '@/utils/types/weather.types';
+import { IForecast, TemperatureUnit } from '@/utils/types/weather.types';
 import classes from './ForecastItem.module.css';
 
-const ForecastItem: FC<IForecast> = ({
-  // celAvgTemperature,
-  // furAvgTemperature,
+export interface ForecastItemProps extends IForecast {
+  preferredTempUnit: TemperatureUnit;
+}
+
+const ForecastItem: FC<ForecastItemProps> = ({
   maxCelTemperature,
   minCelTemperature,
-  // highFurTemperature,
-  // lowFurTemperature,
+  maxFahTemperature,
+  minFahTemperature,
   avgHumidity,
   avgWindSpeed,
   date,
-  condition: {
-    // text,
-    icon,
-  },
+  condition: { icon },
+  preferredTempUnit,
 }) => {
   const dayOfWeek = new Date(date).toLocaleDateString('en-US', {
     weekday: 'short',
   });
+
+  const isCelsius = preferredTempUnit === TemperatureUnit.CEL;
+
+  const maxTemperature = isCelsius ? maxCelTemperature : maxFahTemperature;
+  const minTemperature = isCelsius ? minCelTemperature : minFahTemperature;
 
   return (
     <li className={classes['forecast-item']}>
@@ -33,12 +38,12 @@ const ForecastItem: FC<IForecast> = ({
         <div>
           <ShowTemperature
             key='maxCelTemp'
-            deg={maxCelTemperature}
+            deg={maxTemperature}
             degreeIcon
           />
           <ShowTemperature
             key='minCelTemp'
-            deg={minCelTemperature}
+            deg={minTemperature}
             degreeIcon
           />
         </div>
