@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { motion } from 'framer-motion';
 
 import ShowTemperature from '../ShowTemperature/ShowTemperature';
 import ShowHumidity from '../ShowHumidity/ShowHumidity';
@@ -31,7 +32,14 @@ const ForecastItem: FC<ForecastItemProps> = ({
   const minTemperature = isCelsius ? minCelTemperature : minFahTemperature;
 
   return (
-    <li className={classes['forecast-item']}>
+    <motion.li
+      variants={{
+        hidden: { scale: 0.9, opacity: 0 },
+        show: { scale: 1, opacity: 1 },
+      }}
+      // transition={{}}
+      className={classes['forecast-item']}
+    >
       <h4>{dayOfWeek}</h4>
 
       <div className={classes['temperature-block']}>
@@ -61,7 +69,7 @@ const ForecastItem: FC<ForecastItemProps> = ({
 
         <ShowWindSpeed windSpeed={avgWindSpeed} />
       </div>
-    </li>
+    </motion.li>
   );
 };
 

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import ForecastItem from '../ForecastItem/ForecastItem';
 import { IForecast, TemperatureUnit } from '@/utils/types/weather.types';
@@ -10,16 +11,38 @@ export interface WeatherListProps {
 }
 
 const ForecastList: FC<WeatherListProps> = ({ weatherList, tempUnit }) => {
+  const weatherListKey = JSON.stringify(weatherList);
+
   return (
-    <ul className={classes['forecast-list']}>
-      {weatherList.map((weather) => (
-        <ForecastItem
-          key={weather.dayNumber}
-          {...weather}
-          preferredTempUnit={tempUnit}
-        />
-      ))}
-    </ul>
+    <motion.ul
+      variants={{
+        hidden: { opacity: 0 },
+        show: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.05,
+            delay: 0.4,
+            when: 'beforeChildren',
+          },
+        },
+        exit: { opacity: 0 },
+      }}
+      initial={'hidden'}
+      animate={'show'}
+      exit={'hidden'}
+      key={weatherListKey}
+      className={classes['forecast-list']}
+    >
+      <AnimatePresence>
+        {weatherList.map((weather) => (
+          <ForecastItem
+            key={weather.dayNumber}
+            {...weather}
+            preferredTempUnit={tempUnit}
+          />
+        ))}
+      </AnimatePresence>
+    </motion.ul>
   );
 };
 

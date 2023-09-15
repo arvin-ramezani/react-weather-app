@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { motion } from 'framer-motion';
 
 import ShowTemperature from '../ShowTemperature/ShowTemperature';
 import ShowHumidity from '../ShowHumidity/ShowHumidity';
@@ -36,14 +37,26 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
   const location = `${locationName}, ${country}`;
 
   return (
-    <div className={classes['current-weather-container']}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: { duration: 0.6, delay: 0.4, type: 'tween' },
+      }}
+      className={classes['current-weather-container']}
+      key={location}
+    >
       <ToggleTempUnit
         currentUnit={tempUnit}
         onToggle={onToggleTempUnit}
       />
 
       <div className={classes['current-weather']}>
-        <div className={classes['blur-background']} />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className={classes['blur-background']}
+        />
 
         <h2>{location}</h2>
 
@@ -72,7 +85,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
           <p>{formattedLastUpdate}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
