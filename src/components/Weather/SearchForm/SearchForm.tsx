@@ -55,7 +55,7 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
           key={invalid.toString()}
           id='search'
           type='search'
-          placeholder='Search City'
+          placeholder='Search For a City'
           onKeyDown={keydownHandler}
           aria-label='City Search'
           style={invalid ? { outline: '2px solid red' } : { outline: 'none' }}
