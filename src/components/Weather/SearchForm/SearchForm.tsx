@@ -1,8 +1,13 @@
-import { FC, KeyboardEventHandler, useRef, useState } from 'react';
+import { FC, KeyboardEventHandler, useEffect, useRef, useState } from 'react';
+import { motion, useAnimationControls, AnimatePresence } from 'framer-motion';
 import { FaSearch } from 'react-icons/fa';
 
-import classes from './SearchForm.module.css';
 import { validateSearch } from '@/utils/helpers/validateSearch';
+import {
+  invalidTextVariants,
+  searchFormBtnVariants,
+} from './SearchForm.variants';
+import classes from './SearchForm.module.css';
 
 export interface SearchFormProps {
   onSearch: (city: string) => void;
@@ -11,6 +16,7 @@ export interface SearchFormProps {
 const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [invalid, setInvalid] = useState(false);
+  const animateController = useAnimationControls();
 
   const searchHandler = () => {
     const searchText = inputRef.current!.value;
@@ -18,7 +24,8 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
     const isValid = validateSearch(searchText);
 
     if (!isValid) {
-      setInvalid(true);
+      animateController.start(invalidTextVariants.animate);
+      setInvalid(() => true);
       return;
     }
 
@@ -34,6 +41,12 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
     }
   };
 
+  useEffect(() => {
+    if (invalid) {
+      animateController.start(invalidTextVariants.animate);
+    }
+  }, [invalid]);
+
   return (
     <form className={classes.form}>
       <div className={classes.search}>
@@ -47,14 +60,27 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
           style={invalid ? { outline: '2px solid red' } : { outline: 'none' }}
         />
 
-        {invalid && <p>Please enter valid city name !</p>}
+        <AnimatePresence>
+          {invalid && (
+            <motion.p
+              variants={invalidTextVariants}
+              animate={animateController}
+              exit='exit'
+            >
+              Please enter valid city name !
+            </motion.p>
+          )}
+        </AnimatePresence>
 
-        <button
+        <motion.button
+          variants={searchFormBtnVariants}
+          whileHover={'hover'}
+          whileTap={'tap'}
           type='button'
           onClick={searchHandler}
         >
           <FaSearch />
-        </button>
+        </motion.button>
       </div>
     </form>
   );

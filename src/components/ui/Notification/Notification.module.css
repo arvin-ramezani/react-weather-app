@@ -1,8 +1,8 @@
 .notification {
-  width: 200px;
+  width: 280px;
   position: absolute;
   left: 50%;
-  top: 5%;
+  top: 2%;
   transform: translateX(-50%);
   background: #024879;
   padding: 1rem;
@@ -13,6 +13,7 @@
 
 .notification-actions {
   direction: rtl;
+  margin-top: 0.6rem;
 }
 
 .notification-actions button {

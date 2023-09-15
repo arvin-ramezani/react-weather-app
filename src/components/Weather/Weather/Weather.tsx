@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 
 import SearchForm from '../SearchForm/SearchForm';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
@@ -7,10 +8,10 @@ import { ICurrentWeather, IForecast } from '@/utils/types/weather.types';
 import { transformWeatherResponse } from '@/utils/helpers/transformResponse';
 import LoadingSpinner from '../../ui/LoadingSpinner/LoadingSpinner';
 import { createUrl } from '@/utils/helpers/createUrl';
-import classes from './Weather.module.css';
 import Notification from '@/components/ui/Notification/Notification';
+import classes from './Weather.module.css';
 
-const initialForecast: ICurrentWeather = {
+const initialCurrentWeather: ICurrentWeather = {
   humidity: 0,
   windSpeed: 0,
   celTemperature: 0,
@@ -27,8 +28,9 @@ const initialForecast: ICurrentWeather = {
 };
 
 const Weather: FC = () => {
-  const [currentForecast, setCurrentForecast] =
-    useState<ICurrentWeather>(initialForecast);
+  const [currentForecast, setCurrentForecast] = useState<ICurrentWeather>(
+    initialCurrentWeather
+  );
 
   const [nextForecastsList, setNextForecastsList] = useState<IForecast[]>([]);
   const [loading, setLoading] = useState(false);
@@ -54,7 +56,7 @@ const Weather: FC = () => {
       .then((res) => res.json())
       .then((data) => transformAndSetState(data))
       .catch((err) => console.log(err, 'catch'))
-      // .catch((err) => setErrorText(err?.message))
+      .catch((err) => setErrorText(err?.message))
       .finally(() => setLoading(false));
   };
 
@@ -68,14 +70,23 @@ const Weather: FC = () => {
         Welcome to <span>WeatherLy</span>
       </h1>
 
-      {loading && <LoadingSpinner />}
+      <AnimatePresence>
+        {loading && (
+          <LoadingSpinner
+            key='loadingSpinner'
+            show={loading}
+          />
+        )}
 
-      {!!errorText && (
-        <Notification
-          content={errorText}
-          onClose={setErrorText.bind(null, '')}
-        />
-      )}
+        {!!errorText && (
+          <Notification
+            key='notification'
+            content={errorText}
+            show={!!errorText}
+            onClose={setErrorText.bind(null, '')}
+          />
+        )}
+      </AnimatePresence>
 
       <SearchForm onSearch={fetchWeather} />
 
