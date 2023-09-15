@@ -1,27 +1,65 @@
-# React + TypeScript + Vite
+# Weather Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a weather application built using ViteJS, ReactJS, and TypeScript. It utilizes the [https://www.weatherapi.com/](weatherapi.com) API to fetch the current weather and a 5-day forecast based on the user's search by city name.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before running this application, make sure you have obtained an API key from [https://www.weatherapi.com/](weatherapi.com). It's free and you will need to provide this API key inside a .env file in the root directory of the project.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository to your local machine.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```
+git clone https://github.com/arvin-ramezani/react-weather-app.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navigate to the project directory:
+
+```
+cd react-weather-app
+```
+
+3. Run yarn command to install the project dependencies.
+
+```
+yarn install
+```
+
+## Usage
+
+To run the application in development mode, use the following command:
+
+```
+yarn dev
+```
+
+This will start a local development server and open the application in your default browser.
+By Default:
+
+[http://localhost:5173/](http://localhost:5173/)
+
+To build the application for production, use the following command:
+
+```
+yarn build
+```
+
+This will create a dist folder in the root directory, containing the production-ready build of the application.
+
+## Features
+
+- Search by City Name: Users can enter a city name in the search bar to fetch the current weather and a 5-day forecast for that city.
+- Current Weather: The application displays the current temperature, weather conditions, wind speed, humidity, and visibility for the selected city.
+- 5-Day Forecast: Users can view a forecast for the next 5 days, including temperature highs and lows, weather conditions, and precipitation.
+
+## Technologies Used
+
+- ViteJS: A fast development server and build tool for modern web applications.
+- ReactJS: A JavaScript library for building user interfaces.
+- TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
+- [https://www.weatherapi.com/](weatherapi.com) API: An API service for retrieving weather data.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
