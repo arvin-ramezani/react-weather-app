@@ -1,38 +1,34 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
 import SearchForm from '../SearchForm/SearchForm';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
 import ForecastList from '../ForecastList/ForecastList';
-import { ICurrentWeather, IForecast } from '@/utils/types/weather.types';
+import {
+  ICurrentWeather,
+  IForecast,
+  TemperatureUnit,
+} from '@/utils/types/weather.types';
 import { transformWeatherResponse } from '@/utils/helpers/transformResponse';
 import LoadingSpinner from '../../ui/LoadingSpinner/LoadingSpinner';
 import { createUrl } from '@/utils/helpers/createUrl';
 import Notification from '@/components/ui/Notification/Notification';
+import {
+  getFromLocalStorage,
+  saveToLocalStorage,
+} from '@/utils/helpers/localStorage';
+import { LocalStorageDataName } from '@/utils/types/localStorage.type';
 import classes from './Weather.module.css';
 
-const initialCurrentWeather: ICurrentWeather = {
-  humidity: 0,
-  windSpeed: 0,
-  celTemperature: 0,
-  furTemperature: 0,
-  location: {
-    name: '',
-    country: '',
-  },
-  condition: {
-    icon: '',
-    text: '',
-  },
-  lastUpdate: '',
-};
-
 const Weather: FC = () => {
-  const [currentForecast, setCurrentForecast] = useState<ICurrentWeather>(
-    initialCurrentWeather
+  const [currentWeather, setCurrentWeather] = useState<ICurrentWeather | null>(
+    null
   );
 
-  const [nextForecastsList, setNextForecastsList] = useState<IForecast[]>([]);
+  const [forecastList, setForecastList] = useState<IForecast[]>([]);
+  const [tempUnit, setTempUnit] = useState<TemperatureUnit>(
+    TemperatureUnit.FUH
+  );
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState('');
 
@@ -42,27 +38,34 @@ const Weather: FC = () => {
       return;
     }
 
-    const { currentForecast, nextForecastsList } =
+    const { currentWeather, forecastList } =
       transformWeatherResponse(weatherRes);
 
-    setCurrentForecast(currentForecast);
-    setNextForecastsList(nextForecastsList);
+    setCurrentWeather(currentWeather);
+    setForecastList(forecastList);
+    saveToLocalStorage(
+      LocalStorageDataName.CITY_NAME,
+      currentWeather.location.name
+    );
   };
 
-  const fetchWeather = (city?: string) => {
+  const fetchWeather = useCallback((city?: string) => {
     const url = createUrl(city || 'London');
     setLoading(true);
     fetch(url)
       .then((res) => res.json())
       .then((data) => transformAndSetState(data))
-      .catch((err) => console.log(err, 'catch'))
       .catch((err) => setErrorText(err?.message))
       .finally(() => setLoading(false));
-  };
+  }, []);
 
   useEffect(() => {
-    fetchWeather();
-  }, []);
+    const savedCityName = getFromLocalStorage(LocalStorageDataName.CITY_NAME);
+    const savedTempUnit = getFromLocalStorage(LocalStorageDataName.TEMP_UNIT);
+
+    savedTempUnit && setTempUnit(savedTempUnit as TemperatureUnit);
+    savedCityName && fetchWeather(savedCityName);
+  }, [getFromLocalStorage, fetchWeather]);
 
   return (
     <section className={classes.weather}>
@@ -90,9 +93,19 @@ const Weather: FC = () => {
 
       <SearchForm onSearch={fetchWeather} />
 
-      <CurrentWeather {...currentForecast} />
-
-      <ForecastList weatherList={nextForecastsList} />
+      {currentWeather ? (
+        <>
+          <CurrentWeather
+            currentWeather={currentWeather}
+            tempUnit={tempUnit}
+          />
+          <ForecastList weatherList={forecastList} />
+        </>
+      ) : (
+        <p className={classes['weather-placeholder']}>
+          Search a city for current weather and 5-day forecast
+        </p>
+      )}
     </section>
   );
 };

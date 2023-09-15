@@ -1,23 +1,37 @@
 import { FC } from 'react';
 
-import WeatherIconPlaceHolder from '../../../assets/icons/sunny-icon.png';
 import ShowTemperature from '../ShowTemperature/ShowTemperature';
 import ShowHumidity from '../ShowHumidity/ShowHumidity';
 import ShowWindSpeed from '../ShowWindSpeed/ShowWindSpeed';
-import { ICurrentWeather } from '@/utils/types/weather.types';
+import { ICurrentWeather, TemperatureUnit } from '@/utils/types/weather.types';
 import { formatLastUpdateDate } from '@/utils/helpers/formatDate';
 import classes from './CurrentWeather.module.css';
 
-const CurrentWeather: FC<ICurrentWeather> = ({
-  humidity,
-  windSpeed,
-  celTemperature,
-  lastUpdate,
-  location: { name: locationName, country },
-  condition: { icon },
+export interface CurrentWeatherProps {
+  currentWeather: ICurrentWeather | null;
+  tempUnit: TemperatureUnit;
+}
 
-  // furAvgTemperature,
+const CurrentWeather: FC<CurrentWeatherProps> = ({
+  currentWeather,
+  tempUnit,
 }) => {
+  if (!currentWeather) return null;
+
+  const {
+    humidity,
+    windSpeed,
+    celTemperature,
+    lastUpdate,
+    location: { name: locationName, country },
+    condition: { icon },
+
+    furTemperature,
+  } = currentWeather;
+
+  const preferredTemperatureUnit =
+    tempUnit === TemperatureUnit.CEL ? celTemperature : furTemperature;
+
   const formattedLastUpdate: string = formatLastUpdateDate(lastUpdate);
   const location = `${locationName}, ${country}`;
 
@@ -29,7 +43,10 @@ const CurrentWeather: FC<ICurrentWeather> = ({
 
       <div className={classes['weather-details']}>
         <div className={classes['temperature-block']}>
-          <ShowTemperature deg={celTemperature} />
+          <ShowTemperature
+            deg={preferredTemperatureUnit}
+            type={tempUnit}
+          />
         </div>
 
         <div className={classes['details-block']}>
@@ -40,18 +57,10 @@ const CurrentWeather: FC<ICurrentWeather> = ({
       </div>
 
       <div className={classes['image-wrapper']}>
-        {icon === '' ? (
-          <img
-            className={classes['weather-icon-placeholder']}
-            src={WeatherIconPlaceHolder}
-            alt='Weather Icon'
-          />
-        ) : (
-          <img
-            src={icon}
-            alt='Weather Icon'
-          />
-        )}
+        <img
+          src={icon}
+          alt='Weather Icon'
+        />
 
         <p className={classes['last-update']}>Last Update</p>
         <p>{formattedLastUpdate}</p>

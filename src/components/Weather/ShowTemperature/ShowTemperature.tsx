@@ -2,12 +2,8 @@ import { FC } from 'react';
 import { RiCelsiusLine, RiFahrenheitLine } from 'react-icons/ri';
 import { WiDegrees } from 'react-icons/wi';
 
+import { TemperatureUnit } from '@/utils/types/weather.types';
 import classes from './ShowTemperature.module.css';
-
-export enum TemperatureUnit {
-  Fahrenheit = 'fahrenheit',
-  Celsius = 'celsius',
-}
 
 interface ShowTemperatureProps {
   deg: number;
@@ -29,7 +25,7 @@ const ShowTemperature: FC<ShowTemperatureProps> = ({
     );
   }
 
-  if (type === TemperatureUnit.Fahrenheit) {
+  if (type === TemperatureUnit.FUH) {
     return (
       <div className={classes.temperature}>
         <p className={classes['temperature-text']}>{deg}</p>

@@ -14,3 +14,12 @@
 .weather h1 span {
   color: #f8d62e;
 }
+
+.weather-placeholder {
+  padding-bottom: 3rem;
+  color: #fff;
+  max-width: 300px;
+  margin: 3rem auto;
+  line-height: 1.4;
+  font-size: 1.2rem;
+}

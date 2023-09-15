@@ -1,9 +1,6 @@
-import { ICurrentWeather, IForecast } from '../types/weather.types';
+import { ICurrentWeather, IWeatherData } from '../types/weather.types';
 
-type transformWeatherResponseType = (response: any) => {
-  currentForecast: ICurrentWeather;
-  nextForecastsList: IForecast[];
-};
+type transformWeatherResponseType = (response: any) => IWeatherData;
 
 export const transformWeatherResponse: transformWeatherResponseType = (
   response: any
@@ -32,7 +29,7 @@ export const transformWeatherResponse: transformWeatherResponseType = (
     })
   );
 
-  const currentForecast: ICurrentWeather = {
+  const currentWeather: ICurrentWeather = {
     celTemperature: currentWeatherResponse.temp_c,
     furTemperature: currentWeatherResponse.temp_f,
     windSpeed: currentWeatherResponse.vis_km,
@@ -45,13 +42,13 @@ export const transformWeatherResponse: transformWeatherResponseType = (
     },
   };
 
-  const nextForecastsList = transformedWeatherResponse.splice(
+  const forecastList = transformedWeatherResponse.splice(
     1,
     forecastListResponse.length - 1
   );
 
   return {
-    currentForecast,
-    nextForecastsList,
+    currentWeather,
+    forecastList,
   };
 };
