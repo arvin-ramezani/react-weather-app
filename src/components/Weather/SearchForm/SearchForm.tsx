@@ -54,7 +54,7 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
           ref={inputRef}
           key={invalid.toString()}
           id='search'
-          type='text'
+          type='search'
           placeholder='Search Location...'
           onKeyDown={keydownHandler}
           style={invalid ? { outline: '2px solid red' } : { outline: 'none' }}
