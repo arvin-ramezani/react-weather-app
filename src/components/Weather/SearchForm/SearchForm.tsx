@@ -79,6 +79,7 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
           whileTap={'tap'}
           type='button'
           onClick={searchHandler}
+          aria-label='Search Weather'
         >
           <FaSearch />
         </motion.button>
