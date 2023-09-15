@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { motion } from 'framer-motion';
 import { RiCelsiusLine, RiFahrenheitLine } from 'react-icons/ri';
 import { WiDegrees } from 'react-icons/wi';
 
@@ -16,29 +17,27 @@ const ShowTemperature: FC<ShowTemperatureProps> = ({
   type,
   degreeIcon,
 }) => {
-  if (degreeIcon) {
-    return (
-      <div className={classes.temperature}>
-        <p className={classes['temperature-text']}>{deg}</p>
-        <WiDegrees />
-      </div>
-    );
-  }
+  let icon;
 
-  if (type === TemperatureUnit.FAH) {
-    return (
-      <div className={classes.temperature}>
-        <p className={classes['temperature-text']}>{deg}</p>
-        <RiFahrenheitLine />
-      </div>
-    );
+  if (degreeIcon) {
+    icon = <WiDegrees />;
+  } else if (type === TemperatureUnit.FAH) {
+    icon = <RiFahrenheitLine />;
+  } else {
+    icon = <RiCelsiusLine />;
   }
 
   return (
-    <div className={classes.temperature}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2 }}
+      className={classes.temperature}
+      key={type || deg}
+    >
       <p className={classes['temperature-text']}>{deg}</p>
-      <RiCelsiusLine />
-    </div>
+      {icon}
+    </motion.div>
   );
 };
 

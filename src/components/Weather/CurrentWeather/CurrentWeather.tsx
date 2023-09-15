@@ -25,7 +25,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
     celTemperature,
     lastUpdate,
     location: { name: locationName, country },
-    condition: { icon },
+    condition: { icon, text: conditionText },
     fahTemperature,
   } = currentWeather;
 
@@ -65,7 +65,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
         <div className={classes['image-wrapper']}>
           <img
             src={icon}
-            alt='Weather Icon'
+            alt={`${conditionText} Icon`}
           />
 
           <p className={classes['last-update']}>Last Update</p>
