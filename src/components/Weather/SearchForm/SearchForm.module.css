@@ -10,7 +10,7 @@
   gap: 0.6rem;
 }
 
-.search .input {
+.search input {
   width: 80%;
   border-radius: 3rem;
   font-size: 1rem;
