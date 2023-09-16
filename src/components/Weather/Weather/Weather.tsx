@@ -117,7 +117,7 @@ const Weather: FC = () => {
 
       <SearchForm onSearch={fetchWeather} />
 
-      {currentWeather ? (
+      {currentWeather && (
         <>
           <CurrentWeather
             currentWeather={currentWeather}
@@ -129,9 +129,11 @@ const Weather: FC = () => {
             tempUnit={tempUnit}
           />
         </>
-      ) : (
+      )}
+
+      {!currentWeather && !loading && (
         <p className={classes['weather-placeholder']}>
-          Search a city for current weather and 5-day forecast
+          Search for a city to get current weather and a 5-day forecast
         </p>
       )}
     </section>
