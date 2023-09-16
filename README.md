@@ -45,7 +45,19 @@ To build the application for production, use the following command:
 yarn build
 ```
 
-This will create a dist folder in the root directory, containing the production-ready build of the application.
+This will create a `dist` folder in the root directory, containing the production-ready build of the application.
+
+## Testing
+
+This project includes unit tests that are implemented using Vitest and Testing Library React.
+
+To run the tests, use the following command:
+
+```
+yarn test
+```
+
+This will execute the unit tests and display the test results.
 
 ## Features
 
