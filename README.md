@@ -75,10 +75,8 @@ This will execute the unit tests and display the test results.
 ## Deployment
 
 The application has been deployed on Vercel and can be accessed:
-
-```
+<br />
 <a href="https://react-weather-app-iota-five.vercel.app/" target="_blank">(https://react-weather-app-iota-five.vercel.app/)</a>
-```
 
 ## License
 
