@@ -45,6 +45,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
       }}
       className={classes['current-weather-container']}
       key={location}
+      aria-label='Current Weather Information'
     >
       <ToggleTempUnit
         currentUnit={tempUnit}

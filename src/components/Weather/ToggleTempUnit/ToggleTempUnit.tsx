@@ -19,9 +19,21 @@ const ToggleTempUnit: React.FC<ToggleTempUnitProps> = ({
 
   let activeTempUnit;
   if (isCelsius) {
-    activeTempUnit = <RiCelsiusLine size={'.9rem'} />;
+    activeTempUnit = (
+      <RiCelsiusLine
+        size={'.9rem'}
+        aria-label='Celsius'
+        role='img'
+      />
+    );
   } else {
-    activeTempUnit = <RiFahrenheitLine size={'.9rem'} />;
+    activeTempUnit = (
+      <RiFahrenheitLine
+        size={'.9rem'}
+        aria-label='Fahrenheit'
+        role='img'
+      />
+    );
   }
 
   return (
@@ -29,6 +41,10 @@ const ToggleTempUnit: React.FC<ToggleTempUnitProps> = ({
       data-is-celsius={isCelsius}
       onClick={onToggle}
       className={classes['toggle-temp-unit']}
+      aria-label={`Toggle Temperature Unit (${
+        isCelsius ? 'Celsius' : 'Fahrenheit'
+      })`}
+      role='button'
     >
       <motion.div
         className={classes['active-temp-unit']}
@@ -51,6 +67,7 @@ const ToggleTempUnit: React.FC<ToggleTempUnitProps> = ({
             animate={'animate'}
             exit={'initial'}
             className={classes.fahrenheit}
+            aria-hidden='true'
           >
             <RiFahrenheitLine size={'.9rem'} />
           </motion.div>
@@ -64,6 +81,7 @@ const ToggleTempUnit: React.FC<ToggleTempUnitProps> = ({
             animate={'animate'}
             exit={'initial'}
             className={classes.celsius}
+            aria-hidden='true'
           >
             <RiCelsiusLine size={'.9rem'} />
           </motion.div>

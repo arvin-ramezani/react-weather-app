@@ -32,6 +32,7 @@ const ForecastList: FC<WeatherListProps> = ({ weatherList, tempUnit }) => {
       exit={'hidden'}
       key={weatherListKey}
       className={classes['forecast-list']}
+      aria-label='Forecast List'
     >
       <AnimatePresence>
         {weatherList.map((weather) => (

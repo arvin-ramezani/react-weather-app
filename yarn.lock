@@ -3014,6 +3014,11 @@ vite-node@0.34.4:
   optionalDependencies:
     fsevents "~2.3.2"
 
+vitest-localstorage-mock@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/vitest-localstorage-mock/-/vitest-localstorage-mock-0.0.1.tgz#3af311c484c497d022207b79c2cf2e82a339dce3"
+  integrity sha512-jt8/URLM+aJWObVPWxDZwt/ZSl/JOKafYuITozDVoFHlgl99jjZ7Wdvsu8ryalFChlgsg1lOBicTQsHXJCpXuw==
+
 vitest@^0.34.4:
   version "0.34.4"
   resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.34.4.tgz#c7f40cf7ca3b590bb333b3272a98f49e85f7b958"

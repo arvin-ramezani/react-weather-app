@@ -21,7 +21,7 @@ export const transformWeatherResponse: transformWeatherResponseType = (
       maxFahTemperature: item.day.maxtemp_f,
       minFahTemperature: item.day.mintemp_f,
       avgHumidity: item.day.avghumidity,
-      avgWindSpeed: item.day.avgvis_km,
+      avgWindSpeed: item.day.maxwind_kph,
       condition: {
         text: item.day.condition.text,
         icon: item.day.condition.icon,
@@ -32,7 +32,7 @@ export const transformWeatherResponse: transformWeatherResponseType = (
   const currentWeather: ICurrentWeather = {
     celTemperature: currentWeatherResponse.temp_c,
     fahTemperature: currentWeatherResponse.temp_f,
-    windSpeed: currentWeatherResponse.vis_km,
+    windSpeed: currentWeatherResponse.wind_kph,
     humidity: currentWeatherResponse.humidity,
     lastUpdate: currentWeatherResponse.last_updated,
     location: location,

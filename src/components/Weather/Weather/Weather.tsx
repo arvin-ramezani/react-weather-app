@@ -49,16 +49,16 @@ const Weather: FC = () => {
     const { currentWeather, forecastList } =
       transformWeatherResponse(weatherRes);
 
-    setCurrentWeather(currentWeather);
-    setForecastList(forecastList);
     saveToLocalStorage(
       LocalStorageDataName.CITY_NAME,
       currentWeather.location.name
     );
+    setCurrentWeather(currentWeather);
+    setForecastList(forecastList);
   };
 
-  const fetchWeather = useCallback((city?: string) => {
-    const url = createUrl(city || 'London');
+  const fetchWeather = useCallback((city: string) => {
+    const url = createUrl(city);
     setLoading(true);
     fetch(url)
       .then((res) => res.json())
@@ -133,7 +133,7 @@ const Weather: FC = () => {
 
       {!currentWeather && !loading && (
         <p className={classes['weather-placeholder']}>
-          Search for a city to get current weather and a 5-day forecast
+          Search for a city to get current weather and a 5-day forecast.
         </p>
       )}
     </section>
