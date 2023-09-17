@@ -72,6 +72,14 @@ This will execute the unit tests and display the test results.
 - TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
 - [https://www.weatherapi.com/](weatherapi.com) API: An API service for retrieving weather data.
 
+## Deployment
+
+The application has been deployed on Vercel and can be accessed [here](https://react-weather-app-iota-five.vercel.app/).
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+Weatherapi (https://www.weatherapi.com/)
+Free Weather API - WeatherAPI.com
+WeatherAPI.com free weather API and weather data and Geolocation API (JSON and XML) for hourly, daily and 15 min interval weather, historical data, bulk request, astronomy,
