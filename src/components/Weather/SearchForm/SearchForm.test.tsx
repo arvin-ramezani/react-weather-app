@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
 import SearchForm from './SearchForm';
+import { LocalStorageDataName } from '@/utils/types/localStorage.type';
 
 const props = {
   onSearch: vi.fn(() => {}),
@@ -94,5 +95,15 @@ describe('<SearchForm />', () => {
     await userEvent.click(button);
 
     expect(props.onSearch).toHaveBeenCalledWith(searchTerm);
+  });
+
+  it('should show correct value input if city name is saved in localStorage.', async () => {
+    const cityName = 'London';
+    localStorage.setItem(LocalStorageDataName.CITY_NAME, cityName);
+    renderComponent();
+
+    const input = screen.getByRole('searchbox', { name: /City Search/i });
+
+    expect(input).toHaveValue(cityName);
   });
 });

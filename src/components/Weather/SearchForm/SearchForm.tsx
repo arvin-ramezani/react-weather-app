@@ -8,6 +8,8 @@ import {
   searchFormBtnVariants,
 } from './SearchForm.variants';
 import classes from './SearchForm.module.css';
+import { getFromLocalStorage } from '@/utils/helpers/localStorage';
+import { LocalStorageDataName } from '@/utils/types/localStorage.type';
 
 export interface SearchFormProps {
   onSearch: (city: string) => void;
@@ -45,6 +47,10 @@ const SearchForm: FC<SearchFormProps> = ({ onSearch }) => {
     if (invalid) {
       animateController.start(invalidTextVariants.animate);
     }
+
+    const savedCityName = getFromLocalStorage(LocalStorageDataName.CITY_NAME);
+
+    savedCityName && (inputRef.current!.value = savedCityName);
   }, [invalid]);
 
   return (
