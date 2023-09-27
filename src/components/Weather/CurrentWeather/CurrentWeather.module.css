@@ -38,6 +38,7 @@
   width: 60%;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .temperature-block {
@@ -58,7 +59,9 @@
 }
 
 .image-wrapper img {
-  margin-top: -20px;
+  width: 100px;
+  display: block;
+  margin: -20px auto 1rem;
 }
 
 .image-wrapper .weather-icon-placeholder {
