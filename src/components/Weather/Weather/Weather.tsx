@@ -7,6 +7,9 @@ import ForecastList from '../ForecastList/ForecastList';
 import LoadingSpinner from '../../ui/LoadingSpinner/LoadingSpinner';
 import Notification from '@/components/ui/Notification/Notification';
 import WeatherLogic from './WeatherLogic';
+import MainBackground, {
+  ConditionText,
+} from '@/components/MainBackground/MainBackground';
 import classes from './Weather.module.css';
 
 const Weather: FC = () => {
@@ -21,8 +24,15 @@ const Weather: FC = () => {
     setErrorText,
   } = WeatherLogic();
 
+  const conditionText = currentWeather?.condition?.text as ConditionText;
+
   return (
     <section className={classes.weather}>
+      <MainBackground
+        isDay={currentWeather?.isDay}
+        conditionText={conditionText}
+      />
+
       <h1>
         Welcome to <span>WeatherLy</span>
       </h1>

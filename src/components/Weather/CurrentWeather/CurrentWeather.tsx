@@ -52,6 +52,8 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({
         onToggle={onToggleTempUnit}
       />
 
+      <span>{conditionText}</span>
+
       <div className={classes['current-weather']}>
         <motion.div
           initial={{ opacity: 0 }}

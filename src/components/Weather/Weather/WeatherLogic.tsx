@@ -56,7 +56,7 @@ const WeatherLogic = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => transformAndSetState(data))
-      .catch((err) => setErrorText(err?.message))
+      .catch((err) => setErrorText(err?.message + '123'))
       .finally(() => setLoading(false));
   }, []);
 

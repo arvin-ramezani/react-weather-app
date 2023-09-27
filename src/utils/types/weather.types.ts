@@ -14,6 +14,7 @@ export interface ICurrentWeather {
   fahTemperature: number;
   humidity: number;
   windSpeed: number;
+  isDay: boolean;
   location: {
     name: string;
     country: string;

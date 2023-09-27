@@ -12,6 +12,8 @@ export const transformWeatherResponse: transformWeatherResponseType = (
     country: response.location.country,
   };
 
+  console.log(response);
+
   const transformedWeatherResponse = forecastListResponse.map(
     (item: any, index: number) => ({
       dayNumber: index,
@@ -36,6 +38,7 @@ export const transformWeatherResponse: transformWeatherResponseType = (
     humidity: currentWeatherResponse.humidity,
     lastUpdate: currentWeatherResponse.last_updated,
     location: location,
+    isDay: currentWeatherResponse.is_day === 1 ? true : false,
     condition: {
       text: currentWeatherResponse.condition.text,
       icon: currentWeatherResponse.condition.icon,
